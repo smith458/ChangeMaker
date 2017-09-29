@@ -11,7 +11,7 @@ namespace ChangeMaker
         static void Main(string[] args)
         {
             CurrencySystem customCoins = new CurrencySystem();
-            List<int> denominations = RequestPosIntList("What currencies would you like to use? Enter a 0 when complete.");
+            List<int> denominations = RequestPosIntList("What currencies would you like to use? Enter one at a time and enter a 0 when complete.");
             customCoins.Denominations = denominations;
 
             int changeAmount = RequestPosInt("What amount would you like to make change for?");
