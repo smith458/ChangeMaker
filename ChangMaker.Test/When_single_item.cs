@@ -14,28 +14,37 @@ namespace ChangMaker.Test
         [Test]
         public void Changing_one_one()
         {
-            List<int> denominations = new List<int> { 1 };
-            int change = 1;
-            int result = Program.CountChange(denominations, change);
+            CurrencySystem customCoins = new CurrencySystem();
+            customCoins.Denominations = new List<int> { 1 };
+            int result =  customCoins.CountChangeCombos(1);
             Assert.AreEqual(1, result);
         }
 
         [Test]
         public void Changing_five_one()
         {
-            List<int> denominations = new List<int> { 1 };
-            int change = 5;
-            int result = Program.CountChange(denominations, change);
+            CurrencySystem customCoins = new CurrencySystem();
+            customCoins.Denominations = new List<int> { 1 };
+            int result = customCoins.CountChangeCombos(5);
             Assert.AreEqual(1, result);
         }
 
         [Test]
         public void Changing_five_five()
         {
-            List<int> denominations = new List<int> { 5 };
-            int change = 5;
-            int result = Program.CountChange(denominations, change);
+            CurrencySystem customCoins = new CurrencySystem();
+            customCoins.Denominations = new List<int> { 5 };
+            int result = customCoins.CountChangeCombos(5);
             Assert.AreEqual(1, result);
+        }
+
+        [Test]
+        public void Changing_no_combos()
+        {
+            CurrencySystem customCoins = new CurrencySystem();
+            customCoins.Denominations = new List<int> { 5 };
+            int result = customCoins.CountChangeCombos(1);
+            Assert.AreEqual(0, result);
         }
     }
 }

@@ -13,54 +13,54 @@ namespace ChangMaker.Test
         [Test]
         public void Changing_23_standard()
         {
-            List<int> denominations = new List<int> { 10, 5, 1 };
-            int change = 23;
-            int result = Program.CountChange(denominations, change);
+            CurrencySystem customCoins = new CurrencySystem();
+            customCoins.Denominations = new List<int> { 10, 5, 1 };
+            int result = customCoins.CountChangeCombos(23);
             Assert.AreEqual(9, result);
         }
 
         [Test]
         public void Changing_35_standard()
         {
-            List<int> denominations = new List<int> { 25, 10, 5, 1 };
-            int change = 35;
-            int result = Program.CountChange(denominations, change);
+            CurrencySystem customCoins = new CurrencySystem();
+            customCoins.Denominations = new List<int> { 25, 10, 5, 1 };
+            int result = customCoins.CountChangeCombos(35);
             Assert.AreEqual(24, result);
         }
 
         [Test]
         public void Changing_27_by_15_and_3()
         {
-            List<int> denominations = new List<int> { 15, 3 };
-            int change = 27;
-            int result = Program.CountChange(denominations, change);
+            CurrencySystem customCoins = new CurrencySystem();
+            customCoins.Denominations = new List<int> { 15, 3 };
+            int result = customCoins.CountChangeCombos(27);
             Assert.AreEqual(2, result);
         }
 
         [Test]
         public void Changing_27_by_15_3_and_1()
         {
-            List<int> denominations = new List<int> { 15, 3, 1 };
-            int change = 27;
-            int result = Program.CountChange(denominations, change);
+            CurrencySystem customCoins = new CurrencySystem();
+            customCoins.Denominations = new List<int> { 15, 3, 1 };
+            int result = customCoins.CountChangeCombos(27);
             Assert.AreEqual(15, result);
         }
 
         [Test]
         public void Changing_8_by_3_2_and_1()
         {
-            List<int> denominations = new List<int> { 3, 2, 1 };
-            int change = 8;
-            int result = Program.CountChange(denominations, change);
+            CurrencySystem customCoins = new CurrencySystem();
+            customCoins.Denominations = new List<int> { 3, 2, 1 };
+            int result = customCoins.CountChangeCombos(8);
             Assert.AreEqual(10, result);
         }
 
         [Test]
         public void Changing_137_by_100_50_10_and_1()
         {
-            List<int> denominations = new List<int> { 100, 50, 10, 1 };
-            int change = 137;
-            int result = Program.CountChange(denominations, change);
+            CurrencySystem customCoins = new CurrencySystem();
+            customCoins.Denominations = new List<int> { 100, 50, 10, 1 };
+            int result = customCoins.CountChangeCombos(137);
             Assert.AreEqual(31, result);
         }
     }

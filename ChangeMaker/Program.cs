@@ -10,64 +10,60 @@ namespace ChangeMaker
     {
         static void Main(string[] args)
         {
+            CurrencySystem customCoins = new CurrencySystem();
+            List<int> denominations = RequestPosIntList("What currencies would you like to use? Enter a 0 when complete.");
+            customCoins.Denominations = denominations;
+
+            int changeAmount = RequestPosInt("What amount would you like to make change for?");
+            int combinations = customCoins.CountChangeCombos(changeAmount);
+
+            Console.WriteLine("");
+            Console.WriteLine($"{combinations} ways");
+            Console.ReadLine();
+        }
+
+        public static int RequestPosInt(string request)
+        {
+            int val;
             bool result;
-            int changeAmount;
-            int coinVal;
-            List<int> denominations = new List<int>();
 
             while (true)
             {
-                Console.WriteLine("What amount would you like to make change for?");
-                result = int.TryParse(Console.ReadLine(), out changeAmount);
-                if (result && changeAmount > 0) { break; }
+                Console.WriteLine(request);
+                result = int.TryParse(Console.ReadLine(), out val);
+                if (result && val > 0)
+                {
+                    break;
+                }
             }
+            return val;
+        }
+
+        public static List<int> RequestPosIntList(string request)
+        {
+            int val;
+            bool result;
+            List<int> valList = new List<int>();
 
             while (true)
             {
-                Console.WriteLine("What currencies would you like to use? Enter a 0 when complete.");
-                result = int.TryParse(Console.ReadLine(), out coinVal);
+                Console.WriteLine(request);
+                result = int.TryParse(Console.ReadLine(), out val);
                 if (result)
                 {
-                    if (coinVal > 0)
+                    if (val > 0)
                     {
-                        denominations.Add(coinVal);
+                        valList.Add(val);
                     }
-                    else if (coinVal == 0)
+                    else if (val == 0)
                     {
                         break;
                     }
                 }
             }
 
-            int combinations = CountChange(denominations.OrderByDescending(x => x).ToList(), changeAmount);
-            Console.WriteLine("");
-            Console.WriteLine($"{combinations} ways");
-            Console.ReadLine();
+            return valList;
         }
 
-        public static int CountChange(List<int> denoms, int n, int count=0)
-        {
-            if (denoms.Count()==1)
-            {
-                if (n % denoms[0] == 0)
-                {
-                    return ++count;
-                }
-                else
-                {
-                    return count;
-                }
-            }
-
-            int max = n / denoms[0];
-
-            for (int x = 0; x <= max; x++)
-            {
-                int left = n - x * denoms[0];
-                count = CountChange(denoms.Skip(1).ToList(), left, count);
-            }
-
-            return count;
-        }
     }
 }
